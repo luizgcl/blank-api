@@ -4,8 +4,8 @@ services:
   pg:
     image: bitnami/postgresql
     ports:
-      -5432:5432
+      - 5432:5432
     environment:
-      - POSTGRES_USERNAMEM=docker
-      - POSTGRES_PASSWORD=docker
-      - POSTGRESS_DATABASE=estoqueprev
+      - POSTGRESQL_USERNAME=docker
+      - POSTGRESQL_PASSWORD=docker
+      - POSTGRESQL_DATABASE=estoqueprev
