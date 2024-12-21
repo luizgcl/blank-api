@@ -13,3 +13,11 @@ Content-Type: application/json
     "email": "luiz.leme@estoqueprev.com.br",
     "password": "luiZ$1239"
 }
+
+###
+PATCH {{base_url}}/api/users/2210ed10-3843-4ef8-82b6-64b979de9d6a
+Content-Type: application/json
+
+{
+    "role": "ADMIN"
+}
