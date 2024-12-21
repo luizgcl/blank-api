@@ -1,0 +1,15 @@
+@base_url = http://127.0.0.1:3000
+
+###
+GET {{base_url}}/api/users
+
+###
+POST {{base_url}}/api/auth/register
+Content-Type: application/json
+
+{
+    "firstName": "Luiz",
+    "lastName": "Leme",
+    "email": "luiz.leme@estoqueprev.com.br",
+    "password": "luiZ$1239"
+}

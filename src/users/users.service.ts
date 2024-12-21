@@ -1,26 +1,45 @@
-import { Injectable } from '@nestjs/common';
+import { ConflictException, Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { User } from './entities/user.entity';
 
 @Injectable()
 export class UsersService {
-  create(createUserDto: CreateUserDto) {
-    return 'This action adds a new user';
+  @InjectRepository(User)
+  private readonly userRepository: Repository<User>;
+
+  async create(data: CreateUserDto) {
+    const userWithSameEmail = await this.userRepository.findOneBy({
+      email: data.email,
+    });
+
+    if (userWithSameEmail) {
+      throw new ConflictException('Usuário já registrado');
+    }
+
+    await this.userRepository.save({
+      ...data,
+      role: data.role || 'EMPLOYEE',
+    });
   }
 
   findAll() {
-    return `This action returns all users`;
+    return this.userRepository.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} user`;
+  findOne(id: string) {
+    return this.userRepository.findOneBy({
+      id,
+    });
   }
 
-  update(id: number, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`;
+  async update(id: string, updateUserDto: UpdateUserDto) {
+    await this.userRepository.update(id, updateUserDto);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} user`;
+  async remove(id: string) {
+    await this.userRepository.delete(id);
   }
 }

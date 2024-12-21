@@ -7,7 +7,6 @@ import { UsersModule } from './users/users.module';
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
     TypeOrmModule.forRootAsync({
-      imports: [ConfigModule],
       useFactory: (configService: ConfigService) => ({
         type: 'postgres',
         host: configService.get('DATABASE_HOST'),
@@ -16,7 +15,7 @@ import { UsersModule } from './users/users.module';
         password: configService.get('DATABASE_PASSWORD'),
         database: configService.get('DATABASE_NAME'),
         autoLoadEntities: true,
-        migrations: ['./src/**/migrations/*.{js,ts}'],
+        migrations: ['.src/**/migrations/*.ts'],
         synchronize: false,
       }),
       inject: [ConfigService],
