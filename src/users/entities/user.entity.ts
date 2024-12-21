@@ -1,3 +1,4 @@
+import { Exclude } from 'class-transformer';
 import {
   Column,
   CreateDateColumn,
@@ -28,6 +29,12 @@ export class User {
     default: 'EMPLOYEE',
   })
   role: 'SYSADMIN' | 'ADMIN' | 'EMPLOYEE';
+
+  @Exclude()
+  @Column({
+    name: 'password_hash',
+  })
+  passwordHash: string;
 
   @CreateDateColumn({ name: 'created_at' })
   creaatedAt: Date;

@@ -1,10 +1,10 @@
 @base_url = http://127.0.0.1:3000
 
 ###
-GET {{base_url}}/api/users
+GET {{base_url}}/users
 
 ###
-POST {{base_url}}/api/auth/register
+POST {{base_url}}/auth/register
 Content-Type: application/json
 
 {
@@ -15,7 +15,20 @@ Content-Type: application/json
 }
 
 ###
-PATCH {{base_url}}/api/users/2210ed10-3843-4ef8-82b6-64b979de9d6a
+POST {{base_url}}/auth/login
+Content-Type: application/json
+
+{
+    "email": "luiz.leme@estoqueprev.com.br",
+    "password": "luiZ$1239"
+}
+
+###
+GET {{base_url}}/auth/profile
+Authorization: Bearer 
+
+###
+PATCH {{base_url}}/users/
 Content-Type: application/json
 
 {

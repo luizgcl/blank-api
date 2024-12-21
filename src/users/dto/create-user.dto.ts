@@ -6,6 +6,7 @@ import {
   IsStrongPassword,
   MinLength,
 } from 'class-validator';
+import { UserRoles, UserRoleType } from 'src/common/constants/user-roles';
 
 export class CreateUserDto {
   @MinLength(3)
@@ -25,7 +26,7 @@ export class CreateUserDto {
   @IsNotEmpty()
   password: string;
 
-  @IsEnum(['SYSADMIN', 'ADMIN', 'EMPLOYEE'])
+  @IsEnum(UserRoles)
   @IsOptional()
-  role: 'SYSADMIN' | 'ADMIN' | 'EMPLOYEE' = 'EMPLOYEE';
+  role: UserRoleType = 'EMPLOYEE';
 }
