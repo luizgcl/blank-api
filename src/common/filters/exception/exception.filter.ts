@@ -18,6 +18,19 @@ export class GlobalExceptionFilter implements ExceptionFilter {
         ? exception.getStatus()
         : HttpStatus.INTERNAL_SERVER_ERROR;
 
+    if (
+      exception instanceof HttpException &&
+      typeof exception.getResponse() === 'object'
+    ) {
+      response.status(status).json({
+        ...(exception.getResponse() as object),
+        timestamp: new Date().toISOString(),
+        path: request.url,
+      });
+
+      return;
+    }
+
     response.status(status).json({
       statusCode: status,
       timestamp: new Date().toISOString(),
