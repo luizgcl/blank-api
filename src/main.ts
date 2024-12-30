@@ -5,11 +5,15 @@ import {
 } from '@nestjs/common';
 import { NestFactory, Reflector } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { LoggerInterceptor } from './common/interceptors/logger/logger.interceptor';
 import { GlobalExceptionFilter } from './common/filters/exception/exception.filter';
+import { LoggerInterceptor } from './common/interceptors/logger/logger.interceptor';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule, {
+    cors: {
+      origin: '*',
+    },
+  });
   app.useGlobalInterceptors(
     new LoggerInterceptor(),
     new ClassSerializerInterceptor(app.get(Reflector)),
