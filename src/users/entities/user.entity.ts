@@ -1,4 +1,4 @@
-import { Exclude } from 'class-transformer';
+import { Exclude, Transform } from 'class-transformer';
 import {
   Column,
   CreateDateColumn,
@@ -20,6 +20,12 @@ export class User {
 
   @Column({ name: 'last_name' })
   lastName: string;
+
+  @Column({ name: 'picture_path', unique: true })
+  @Transform(({ value }) => {
+    return `profiles/${value}.png`;
+  })
+  picturePath: string;
 
   @Column({ name: 'email', unique: true })
   email: string;

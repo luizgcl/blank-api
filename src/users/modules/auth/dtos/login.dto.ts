@@ -12,10 +12,12 @@ export class InputLoginDto {
 
 export class OutputLoginDto {
   access_token: string;
-  user_info: {
+  userInfo: {
     firstName: string;
     lastName: string;
     email: string;
+    profileImage: string;
+    hasImage: boolean;
     role: UserRoleType;
   };
 }

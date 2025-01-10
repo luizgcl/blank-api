@@ -7,6 +7,7 @@ import {
 import { JwtService } from '@nestjs/jwt';
 import { InjectRepository } from '@nestjs/typeorm';
 import { compare, genSalt, hash } from 'bcrypt';
+import slugify from 'slugify';
 import { DefaultUserRole } from 'src/common/constants/user-roles';
 import { CreateUserDto } from 'src/users/dto/create-user.dto';
 import { User } from 'src/users/entities/user.entity';
@@ -33,10 +34,16 @@ export class AuthService {
     const salt = await genSalt();
     const passwordHash = await hash(data.password, salt);
 
+    const path = slugify(`${data.firstName} ${data.lastName} ${Date.now()}`, {
+      lower: true,
+      locale: 'pt',
+    });
+
     await this.userRepository.save({
       firstName: data.firstName,
       lastName: data.lastName,
       email: data.email,
+      picturePath: path,
       passwordHash,
       role: data.role || DefaultUserRole,
     });
@@ -68,10 +75,12 @@ export class AuthService {
 
     return {
       access_token: accessToken,
-      user_info: {
+      userInfo: {
         firstName: user.firstName,
         lastName: user.lastName,
         email: user.email,
+        profileImage: user.picturePath,
+        hasImage: false,
         role: user.role,
       },
     };
