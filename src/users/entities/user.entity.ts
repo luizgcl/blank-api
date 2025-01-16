@@ -43,7 +43,7 @@ export class User {
   passwordHash: string;
 
   @CreateDateColumn({ name: 'created_at' })
-  creaatedAt: Date;
+  createdAt: Date;
 
   @UpdateDateColumn({ name: 'updated_at' })
   updatedAt: Date;
