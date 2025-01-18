@@ -4,23 +4,12 @@
 GET {{base_url}}/users
 
 ###
-POST {{base_url}}/auth/register
-Content-Type: application/json
-
-{
-    "firstName": "Luiz",
-    "lastName": "Leme",
-    "email": "luiz.leme@estoqueprev.com.br",
-    "password": "luiZ$1239"
-}
-
-###
 POST {{base_url}}/auth/login
 Content-Type: application/json
 
 {
-    "email": "luiz.leme@estoqueprev.com.br",
-    "password": "luiZ$1239"
+    "email": "luiz.leme@jotapresentes.com.br",
+    "password": "luiZ@1234"
 }
 
 ###
@@ -33,4 +22,23 @@ Content-Type: application/json
 
 {
     "role": "ADMIN"
+}
+
+###
+POST {{base_url}}/customer/register
+Content-Type: application/json
+
+{
+    "name": "Jota Presentes",
+    "socialName": "Jota Presentes LTDA",
+    "firstName": "Luiz",
+    "lastName": "Leme",
+    "document": "43872987000103",
+    "documentType": "CNPJ",
+    "email": "luiz.leme@jotapresentes.com.br",
+    "phone": "17992746846",
+    "planId": 1,
+    "installments": 2,
+    "planDiscount": 0,
+    "password": "luiZ@1234"
 }

@@ -1,8 +1,10 @@
+import { CustomerMembers } from '@/customers/entities/customer-members.entity';
 import { Exclude, Transform } from 'class-transformer';
 import {
   Column,
   CreateDateColumn,
   Entity,
+  OneToMany,
   PrimaryColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -47,4 +49,7 @@ export class User {
 
   @UpdateDateColumn({ name: 'updated_at' })
   updatedAt: Date;
+
+  @OneToMany(() => CustomerMembers, (customerMember) => customerMember.user)
+  customers: CustomerMembers[];
 }

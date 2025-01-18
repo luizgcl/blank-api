@@ -21,6 +21,7 @@ async function bootstrap() {
   app.useGlobalFilters(new GlobalExceptionFilter());
   app.useGlobalPipes(
     new ValidationPipe({
+      transform: true,
       errorHttpStatusCode: HttpStatus.UNPROCESSABLE_ENTITY,
       transformOptions: {
         enableImplicitConversion: true,

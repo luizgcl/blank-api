@@ -3,5 +3,6 @@
         "*.service.ts": "nest-service",
         "*.controller.ts": "nest-controller",
         "*.module.ts": "nest",
-    }
+    },
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
 }
