@@ -6,17 +6,17 @@ import {
   Inject,
   Post,
 } from '@nestjs/common';
-import { CustomerService } from './customer.service';
 import { RegisterCustomerDto } from './dto/register-customer.dto';
+import { RegisterCustomerService } from './register-customer.service';
 
 @Controller('customer')
 export class CustomerController {
   @Inject()
-  private customerService: CustomerService;
+  private registerCustomerService: RegisterCustomerService;
 
   @Post('register')
   @HttpCode(HttpStatus.CREATED)
   register(@Body() registerCustomerDto: RegisterCustomerDto) {
-    return this.customerService.register(registerCustomerDto);
+    return this.registerCustomerService.register(registerCustomerDto);
   }
 }

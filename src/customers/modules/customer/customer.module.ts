@@ -6,14 +6,14 @@ import { UsersModule } from '@/users/users.module';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { CustomerController } from './customer.controller';
-import { CustomerService } from './customer.service';
+import { RegisterCustomerService } from './register-customer.service';
 
 @Module({
   imports: [
     TypeOrmModule.forFeature([Customer, Subscription, Plan, CustomerMembers]),
     UsersModule,
   ],
-  providers: [CustomerService],
+  providers: [RegisterCustomerService],
   controllers: [CustomerController],
 })
 export class CustomerModule {}

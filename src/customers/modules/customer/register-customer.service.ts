@@ -18,7 +18,7 @@ import { DataSource, Repository } from 'typeorm';
 import { RegisterCustomerDto } from './dto/register-customer.dto';
 
 @Injectable()
-export class CustomerService {
+export class RegisterCustomerService {
   @InjectRepository(Customer)
   private customerRepository: Repository<Customer>;
 
