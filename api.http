@@ -42,3 +42,7 @@ Content-Type: application/json
     "planDiscount": 0,
     "password": "luiZ@1234"
 }
+
+###
+
+GET {{base_url}}/plans
