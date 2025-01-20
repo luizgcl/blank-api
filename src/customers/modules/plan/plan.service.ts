@@ -10,6 +10,9 @@ export class PlanService {
 
   async fetchPlans() {
     const plans = await this.planRepository.find({
+      order: {
+        id: 'ASC',
+      },
       cache: true,
     });
 
