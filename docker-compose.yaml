@@ -9,3 +9,10 @@ services:
       - POSTGRESQL_USERNAME=docker
       - POSTGRESQL_PASSWORD=docker
       - POSTGRESQL_DATABASE=estoqueprev
+  redis:
+    image: bitnami/redis
+    ports:
+      - 6379:6379
+    environment:
+      - REDIS_MASTER_PASSWORD=docker
+      - REDIS_PASSWORD=docker

@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { UsersModule } from './users/users.module';
 import { CommonModule } from './common/common.module';
 import { CustomersModule } from './customers/customers.module';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
@@ -19,6 +19,15 @@ import { CustomersModule } from './customers/customers.module';
         autoLoadEntities: true,
         migrations: ['.src/**/migrations/*.ts'],
         synchronize: false,
+        cache: {
+          type: 'redis',
+          duration: 30000,
+          options: {
+            host: '127.0.0.1',
+            port: 6379,
+            password: 'docker',
+          },
+        },
       }),
       inject: [ConfigService],
     }),

@@ -4,6 +4,7 @@ import {
   ExceptionFilter,
   HttpException,
   HttpStatus,
+  Logger,
 } from '@nestjs/common';
 
 @Catch()
@@ -17,6 +18,8 @@ export class GlobalExceptionFilter implements ExceptionFilter {
       exception instanceof HttpException
         ? exception.getStatus()
         : HttpStatus.INTERNAL_SERVER_ERROR;
+
+    Logger.error(exception, 'ErrorHandler');
 
     if (
       exception instanceof HttpException &&
