@@ -66,6 +66,7 @@ export class Subscription {
     default: 1,
     type: 'integer',
     transformer: new ColumnNumericTransformer(),
+    nullable: true,
   })
   installments: number;
 
@@ -75,6 +76,7 @@ export class Subscription {
     precision: 10,
     scale: 2,
     transformer: new ColumnNumericTransformer(),
+    nullable: true,
   })
   installmentValue: number;
 
