@@ -21,10 +21,6 @@ export class RegisterCustomerDto {
   @IsNotEmpty()
   name: string;
 
-  @IsString()
-  @IsNotEmpty()
-  socialName: string;
-
   @IsEmail()
   @IsNotEmpty()
   email: string;

@@ -30,7 +30,6 @@ Content-Type: application/json
 
 {
     "name": "Jota Presentes",
-    "socialName": "Jota Presentes LTDA",
     "firstName": "Luiz",
     "lastName": "Leme",
     "document": "43872987000103",

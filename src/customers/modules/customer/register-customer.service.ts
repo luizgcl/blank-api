@@ -68,7 +68,7 @@ export class RegisterCustomerService {
     try {
       const customer = this.customerRepository.create({
         name: registerCustomerDto.name,
-        socialName: registerCustomerDto.socialName,
+        socialName: registerCustomerDto.name,
         document: registerCustomerDto.document,
         documentType: registerCustomerDto.documentType,
         email: registerCustomerDto.email,
