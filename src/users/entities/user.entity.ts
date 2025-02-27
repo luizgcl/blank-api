@@ -4,7 +4,8 @@ import {
   Column,
   CreateDateColumn,
   Entity,
-  OneToMany,
+  JoinColumn,
+  OneToOne,
   PrimaryColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -50,6 +51,7 @@ export class User {
   @UpdateDateColumn({ name: 'updated_at' })
   updatedAt: Date;
 
-  @OneToMany(() => CustomerMembers, (customerMember) => customerMember.user)
-  customers: CustomerMembers[];
+  @OneToOne(() => CustomerMembers, (customerMember) => customerMember.user)
+  @JoinColumn()
+  customer: CustomerMembers;
 }
