@@ -122,22 +122,22 @@ export class RegisterCustomerService {
         },
       );
 
+      const customerMember = this.customerMemberRepository.create({
+        customer,
+      });
+
+      await queryRunner.manager.save(customerMember);
+
       const user = this.userRepository.create({
         firstName: registerCustomerDto.firstName,
         lastName: registerCustomerDto.lastName,
         email: registerCustomerDto.email,
         picturePath: path,
         passwordHash,
+        member: customerMember,
       });
 
       await queryRunner.manager.save(user);
-
-      const customerMember = this.customerMemberRepository.create({
-        customer,
-        user,
-      });
-
-      await queryRunner.manager.save(customerMember);
 
       await queryRunner.commitTransaction();
     } catch (err) {

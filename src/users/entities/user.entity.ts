@@ -51,7 +51,9 @@ export class User {
   @UpdateDateColumn({ name: 'updated_at' })
   updatedAt: Date;
 
-  @OneToOne(() => CustomerMembers, (customerMember) => customerMember.user)
-  @JoinColumn()
-  customer: CustomerMembers;
+  @OneToOne(() => CustomerMembers, { eager: true })
+  @JoinColumn({
+    name: 'customer_member_id',
+  })
+  member: CustomerMembers;
 }

@@ -3,7 +3,6 @@ import {
   MemberStatusArray,
   MemberStatusType,
 } from '@/common/constants/member-status';
-import { User } from '@/users/entities/user.entity';
 import {
   Column,
   CreateDateColumn,
@@ -20,17 +19,11 @@ export class CustomerMembers {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @ManyToOne(() => Customer, (customer) => customer.members)
+  @ManyToOne(() => Customer, (customer) => customer.members, { eager: true })
   @JoinColumn({
     name: 'customer_id',
   })
   customer: Customer;
-
-  @ManyToOne(() => User)
-  @JoinColumn({
-    name: 'user_id',
-  })
-  user: User;
 
   @Column({
     enum: MemberStatusArray,

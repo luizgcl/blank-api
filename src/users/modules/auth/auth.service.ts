@@ -67,6 +67,7 @@ export class AuthService {
     const accessToken = this.jwtService.sign(
       {
         role: user.role,
+        customer_id: user.member.customer.id,
       },
       {
         subject: user.email,

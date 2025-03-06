@@ -3,6 +3,7 @@ import {
   DocumentTypes,
   DocumentTypesArray,
 } from '@/common/constants/document-types';
+import { Category } from '@/products/entities/category.entity';
 import {
   Column,
   CreateDateColumn,
@@ -61,4 +62,7 @@ export class Customer {
 
   @OneToMany(() => CustomerMembers, (customerMember) => customerMember.customer)
   members: CustomerMembers[];
+
+  @OneToMany(() => Category, (category) => category.customer)
+  categories: Category[];
 }

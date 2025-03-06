@@ -1,5 +1,7 @@
 @base_url = http://127.0.0.1:3000
 
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiRU1QTE9ZRUUiLCJjdXN0b21lcl9pZCI6IjE5MDQwZmMxLWU5ZTYtNDRhYS04ZmJiLTI0ZDI4MTM1YTk5NiIsImlhdCI6MTc0MDc4NTI0MSwiZXhwIjoxNzQwNzg1ODQxLCJpc3MiOiJlc3RvcXVlcHJldiIsInN1YiI6Imp1bGlvQG9wY2FvbW9kYXMuY29tLmJyIn0.7_DeJ27RXQG_UPwQY1yLbAQHZo4TQotzBTgrfyCvQr8
+
 ###
 GET {{base_url}}/users
 
@@ -8,8 +10,8 @@ POST {{base_url}}/auth/login
 Content-Type: application/json
 
 {
-    "email": "luiz.leme@jotapresentes.com.br",
-    "password": "luiZ@1234"
+    "email": "julio@opcaomodas.com.br",
+    "password": "Opcao@2025"
 }
 
 ###
@@ -45,3 +47,19 @@ Content-Type: application/json
 ###
 
 GET {{base_url}}/plans
+
+###
+
+GET {{base_url}}/category
+Authorization: Bearer {{token}}
+
+###
+POST {{base_url}}/category
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "name": "Sapatos",
+    "color": "#00a99d",
+    "frequency": "MONTHLY"
+}

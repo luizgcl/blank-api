@@ -4,6 +4,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { CommonModule } from './common/common.module';
 import { CustomersModule } from './customers/customers.module';
 import { UsersModule } from './users/users.module';
+import { ProductsModule } from './products/products.module';
 
 @Module({
   imports: [
@@ -34,6 +35,7 @@ import { UsersModule } from './users/users.module';
     UsersModule,
     CommonModule,
     CustomersModule,
+    ProductsModule,
   ],
   controllers: [],
   providers: [],
