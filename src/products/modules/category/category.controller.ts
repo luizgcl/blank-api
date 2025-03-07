@@ -6,10 +6,12 @@ import { CreateCategoryDto } from '@/products/dto/create-category.dto';
 import {
   Body,
   Controller,
+  Delete,
   Get,
   HttpCode,
   HttpStatus,
   Inject,
+  Param,
   Post,
   Request,
   UseGuards,
@@ -35,5 +37,11 @@ export class CategoryController {
       createCategoryDto,
       req.user.customer_id,
     );
+  }
+
+  @Delete(':id')
+  @HttpCode(HttpStatus.NO_CONTENT)
+  deleteCategory(@Param('id') id: number) {
+    return this.categoryService.deleteCategory(id);
   }
 }

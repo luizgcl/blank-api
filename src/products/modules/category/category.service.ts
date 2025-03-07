@@ -1,6 +1,6 @@
 import { CreateCategoryDto } from '@/products/dto/create-category.dto';
 import { Category } from '@/products/entities/category.entity';
-import { ConflictException, Injectable } from '@nestjs/common';
+import { ConflictException, Inject, Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import slugify from 'slugify';
 import { Repository } from 'typeorm';
@@ -9,6 +9,9 @@ import { Repository } from 'typeorm';
 export class CategoryService {
   @InjectRepository(Category)
   categoryRepository: Repository<Category>;
+
+  @Inject()
+  logger: Logger;
 
   async createCategory(
     createCategoryDto: CreateCategoryDto,
@@ -53,5 +56,12 @@ export class CategoryService {
   }
 
   // async updateCategory(categoryId: number) {}
-  // async deleteCategory(categoryId: number) {}
+
+  async deleteCategory(categoryId: number) {
+    const result = await this.categoryRepository.delete(categoryId);
+
+    if (result.affected > 0) {
+      this.logger.log(`Caegoria com o id ${categoryId} deletada.`);
+    }
+  }
 }
